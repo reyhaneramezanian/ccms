@@ -1,0 +1,264 @@
+query block_getBlocks($skip: Int, $take: Int, $where: BlockFilterInput, $order: [BlockSortInput!]) {
+    block_getBlocks {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                name
+                activeStatus
+                complex {
+                    name
+                    id
+                }
+                id
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+query complex_getComplexes(
+    $skip: Int
+    $take: Int
+    $where: ComplexFilterInput
+    $order: [ComplexSortInput!]
+) {
+    complex_getComplexes {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                paymentMode
+                name
+                activeStatus
+                paymentMode
+                initiallyAmount
+                permittedConsumption
+            }
+
+            totalCount
+        }
+        status
+    }
+}
+
+query floor_getFloors($skip: Int, $take: Int, $where: FloorFilterInput, $order: [FloorSortInput!]) {
+    floor_getFloors {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                name
+                id
+                activeStatus
+                block {
+                    name
+                    id
+                    complex {
+                        name
+                        id
+                    }
+                }
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+query flat_getFlats($skip: Int, $take: Int, $where: FlatFilterInput, $order: [FlatSortInput!]) {
+    flat_getFlats {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                name
+                id
+                credit
+                activeStatus
+                floor {
+                    name
+                    id
+                    block {
+                        name
+                        id
+                        complex {
+                            name
+                            id
+                        }
+                    }
+                }
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation complex_delete($id: Int!) {
+    complex_delete(id: $id) {
+        status
+    }
+}
+
+mutation block_delete($id: Int!) {
+    block_delete(id: $id) {
+        status
+    }
+}
+mutation floor_delete($id: Int!) {
+    floor_delete(id: $id) {
+        status
+    }
+}
+mutation flat_delete($entityId: Int!) {
+    flat_delete(entityId: $entityId) {
+        code
+        value
+    }
+}
+
+mutation complex_update($input: ComplexInput) {
+    complex_update(input: $input) {
+        status
+    }
+}
+
+mutation block_update($id: Int!, $input: BlockInput) {
+    block_update(id: $id, input: $input) {
+        status
+    }
+}
+
+mutation floor_update($id: Int!, $input: FloorInput) {
+    floor_update(id: $id, input: $input) {
+        status
+    }
+}
+
+mutation flat_update($input: FlatInput) {
+    flat_update(input: $input) {
+        status
+    }
+}
+
+mutation complex_create($input: ComplexInput) {
+    complex_create(input: $input) {
+        status
+    }
+}
+
+mutation block_create($input: BlockInput) {
+    block_create(input: $input) {
+        status
+    }
+}
+
+mutation floor_create($input: FloorInput) {
+    floor_create(input: $input) {
+        status
+    }
+}
+
+mutation flat_create($input: FlatInput) {
+    flat_create(input: $input) {
+        status
+    }
+}
+query countbilding {
+    complex_getComplexes {
+        result(skip: 1, take: 1) {
+            totalCount
+        }
+    }
+    block_getBlocks {
+        result(skip: 1, take: 1) {
+            totalCount
+        }
+    }
+    floor_getFloors {
+        result(skip: 1, take: 1) {
+            totalCount
+        }
+    }
+    flat_getFlats {
+        result(skip: 1, take: 1) {
+            totalCount
+        }
+    }
+}
+
+query complex_getAvailableComplexes(
+    $skip: Int
+    $take: Int
+    $where: ComplexFilterInput
+    $order: [ComplexSortInput!]
+    $ownershipStatus: OwnershipStatus!
+) {
+    complex_getAvailableComplexes(ownershipStatus: $ownershipStatus) {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                name
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+query block_getAvailableBlocks(
+    $skip: Int
+    $take: Int
+    $where: BlockFilterInput
+    $order: [BlockSortInput!]
+    $ownershipStatus: OwnershipStatus!
+) {
+    block_getAvailableBlocks(ownershipStatus: $ownershipStatus) {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                name
+                complexId
+            }
+
+            totalCount
+        }
+        status
+    }
+}
+
+query floor_getAvailableFloors(
+    $skip: Int
+    $take: Int
+    $where: FloorFilterInput
+    $order: [FloorSortInput!]
+    $ownershipStatus: OwnershipStatus!
+) {
+    floor_getAvailableFloors(ownershipStatus: $ownershipStatus) {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                name
+            }
+
+            totalCount
+        }
+        status
+    }
+}
+
+query flat_getAvailableFlats(
+    $skip: Int
+    $take: Int
+    $where: FlatFilterInput
+    $order: [FlatSortInput!]
+    $ownershipStatus: OwnershipStatus!
+    $currentFlatId: Int
+) {
+    flat_getAvailableFlats(ownershipStatus: $ownershipStatus, currentFlatId: $currentFlatId) {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                name
+            }
+
+            totalCount
+        }
+        status
+    }
+}

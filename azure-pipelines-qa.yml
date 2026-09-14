@@ -1,0 +1,21 @@
+trigger:
+    - QA
+
+pool:
+    vmImage: ubuntu-18.04
+
+steps:
+    - checkout: self
+      submodules: true
+    - task: NodeTool@0
+      inputs:
+        versionSource: 'spec'
+        versionSpec: '6.x'
+    - task: AzureStaticWebApp@0
+      inputs:
+          app_build_command: 'npm run build:qa'
+          build_timeout_in_minutes: 60
+          app_location: '/'
+          api_location: 'pages/api/'
+          output_location: '/out'
+          azure_static_web_apps_api_token: $(token)

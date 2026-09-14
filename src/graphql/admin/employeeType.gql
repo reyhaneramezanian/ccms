@@ -1,0 +1,48 @@
+query adminEmployeeTypeGet(
+    $skip: Int
+    $take: Int
+    $where: EmploymentTypeFilterInput
+    $order: [EmploymentTypeSortInput!]
+) {
+    employmentType_getEmploymentTypes {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                name
+                activeStatus
+                isDeleted
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation adminEmployeeTypeCreate($input: EmploymentTypeInput) {
+    employmentType_create(input: $input) {
+        result {
+            id
+            name
+            activeStatus
+        }
+        status
+    }
+}
+
+mutation adminEmployeeTypeUpdate($input: EmploymentTypeInput) {
+    employmentType_update(input: $input) {
+        result {
+            id
+            name
+            activeStatus
+        }
+        status
+    }
+}
+
+mutation adminEmployeeTypeDelete($entityId: Int!) {
+    employmentType_delete(entityId: $entityId) {
+        value
+        code
+    }
+}

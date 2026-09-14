@@ -1,0 +1,16 @@
+trigger:
+    - PRD
+
+pool:
+    vmImage: ubuntu-latest
+
+steps:
+    - checkout: self
+      submodules: true
+    - task: AzureStaticWebApp@0
+      inputs:
+          app_build_command: 'npm run build:prd'
+          app_location: '/'
+          api_location: 'pages/api/'
+          output_location: '/out'
+          azure_static_web_apps_api_token: $(token)

@@ -1,0 +1,70 @@
+query residentUserGet {
+    user_getCurrentResident {
+        result {
+            residentFlats {
+                id
+                approvalStatus
+                activeStatus
+                flat {
+                    id
+                    credit
+                    name
+                    floor {
+                        name
+                        block {
+                            name
+                            complex {
+                                name
+                                paymentMode
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        status
+    }
+}
+
+query user_getCurrentAuthorizedUser {
+    user_getCurrentAuthorizedUser {
+        result {
+            activeStatus
+            firstName
+            lastName
+            middleName
+            email
+            id
+            phoneNumber
+            photoUrl
+            dateOfBirth
+            gender
+            relation
+            residentFlatId
+            residentFlat {
+                id
+                ownershipStatus
+                activeStatus
+                flat {
+                    id
+                    name
+                    floor {
+                        name
+                        block {
+                            name
+                            complex {
+                                name
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        status
+    }
+}
+mutation gateApproval_setExpired($entityId: Int!) {
+    gateApproval_setExpired(entityId: $entityId) {
+        status
+    }
+}

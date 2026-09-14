@@ -1,0 +1,287 @@
+query user_getResidents(
+    $skip: Int
+    $take: Int
+    $where: ResidentFilterInput
+    $order: [ResidentSortInput!]
+) {
+    user_getResidents {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                firstName
+                lastName
+                middleName
+                id
+                email
+                phoneNumber
+                activeStatus
+                dateOfBirth
+                alternativeContact
+                gender
+                photoUrl
+                residentFlats {
+                    ownershipStatus
+                    flatId
+                    residentId
+                    id
+                    flat {
+                        name
+                        id
+                        floor {
+                            name
+                            id
+                            block {
+                                name
+                                id
+                                complex {
+                                    name
+                                    id
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            totalCount
+        }
+        status
+    }
+}
+
+query user_getStaffs($skip: Int, $take: Int, $where: StaffFilterInput, $order: [StaffSortInput!]) {
+    user_getStaffs {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                createdDate
+                lastModifiedDate
+                staffId
+                firstName
+                lastName
+                phoneNumber
+                email
+                activeStatus
+                id
+                middleName
+                gender
+                dateOfBirth
+                dateOfJoining
+                alternatePhone
+                alternateEmail
+                address
+                employmentTypeId
+                departmentId
+                photoUrl
+                dateOfTermination
+                staffComplexes {
+                    complexId
+                    complex {
+                        name
+                    }
+                }
+                department {
+                    name
+                    id
+                }
+                employmentType {
+                    name
+                    id
+                }
+                departmentManagers {
+                    id
+                }
+            }
+
+            totalCount
+        }
+        status
+    }
+}
+
+query user_getSecurities(
+    $skip: Int
+    $take: Int
+    $where: SecurityFilterInput
+    $order: [SecuritySortInput!]
+) {
+    user_getSecurities {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                lastModifiedDate
+                photoUrl
+                securityId
+                firstName
+                lastName
+                middleName
+                dateOfJoining
+                dateOfTermination
+                phoneNumber
+                email
+                id
+                yearsOfExperience
+                gender
+                dateOfBirth
+                activeStatus
+                complexId
+                createdDate
+                employmentTypeId
+                employmentType {
+                    name
+                }
+                complex {
+                    name
+                    id
+                }
+            }
+
+            totalCount
+        }
+        status
+    }
+}
+
+mutation user_createResident($input: ResidentCreateInput, $residentFlatInput: ResidentFlatInput) {
+    user_createResident(input: $input, residentFlatInput: $residentFlatInput) {
+        result {
+            id
+        }
+        status
+    }
+}
+mutation user_updateResident($input: ResidentUpdateInput) {
+    user_updateResident(input: $input) {
+        status
+    }
+}
+
+mutation user_deleteResident($entityId: Int!) {
+    user_deleteResident(entityId: $entityId) {
+        code
+        value
+    }
+}
+
+mutation user_deleteSecurity($securityId: Int!) {
+    user_deleteSecurity(securityId: $securityId) {
+        code
+        value
+    }
+}
+
+mutation user_createSecurity($input: SecurityCreateInput) {
+    user_createSecurity(input: $input) {
+        status
+    }
+}
+
+mutation user_updateSecurityProfile($input: SecurityUpdateInput) {
+    user_updateSecurityProfile(input: $input) {
+        status
+    }
+}
+
+mutation user_deleteStaff($staffId: Int!) {
+    user_deleteStaff(staffId: $staffId) {
+        code
+        value
+    }
+}
+
+mutation user_createStaff($input: StaffCreateInput) {
+    user_createStaff(input: $input) {
+        status
+    }
+}
+
+mutation user_updateStaffProfile($input: StaffUpdateInput) {
+    user_updateStaffProfile(input: $input) {
+        status
+    }
+}
+
+query user_getUsers($skip: Int, $take: Int, $where: UserFilterInput, $order: [UserSortInput!]) {
+    user_getUsers {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                firstName
+                lastName
+                userType
+                phoneNumber
+                email
+                approvalStatus
+                id
+                createdDate
+                photoUrl
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+query department_getDepartments(
+    $skip: Int
+    $take: Int
+    $where: DepartmentFilterInput
+    $order: [DepartmentSortInput!]
+) {
+    department_getDepartments {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                name
+                id
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation user_changeApprovalStatus($entityId: Int!, $approvalStatus: ApprovalStatus!) {
+    user_changeApprovalStatus(entityId: $entityId, approvalStatus: $approvalStatus) {
+        code
+        value
+    }
+}
+
+mutation residentFlat_changeApprovalStatus($entityId: Int!, $approvalStatus: ApprovalStatus!) {
+    residentFlat_changeApprovalStatus(entityId: $entityId, approvalStatus: $approvalStatus) {
+        code
+        value
+    }
+}
+
+mutation residentFlat_update($input: ResidentFlatInput) {
+    residentFlat_update(input: $input) {
+        status
+    }
+}
+mutation residentFlat_create($input: ResidentFlatInput) {
+    residentFlat_create(input: $input) {
+        status
+    }
+}
+
+mutation residentFlat_delete($entityId: Int!) {
+    residentFlat_delete(entityId: $entityId) {
+        code
+        value
+    }
+}
+query employmentType_getEmploymentTypes(
+    $skip: Int
+    $take: Int
+    $where: EmploymentTypeFilterInput
+    $order: [EmploymentTypeSortInput!]
+) {
+    employmentType_getEmploymentTypes {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                name
+                id
+            }
+
+            totalCount
+        }
+        status
+    }
+}

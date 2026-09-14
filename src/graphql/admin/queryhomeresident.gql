@@ -1,0 +1,101 @@
+query announcementType_getAnnouncementTypes(
+    $skip: Int
+    $take: Int
+    $where: AnnouncementTypeFilterInput
+    $order: [AnnouncementTypeSortInput!]
+) {
+    announcementType_getAnnouncementTypes {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                name
+                id
+                activeStatus
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation announcement_create($input: AnnouncementInput) {
+    announcement_create(input: $input) {
+        status
+    }
+}
+
+query serviceType_getServiceTypes($skip: Int, $take: Int, $where: ServiceTypeFilterInput) {
+    serviceType_getServiceTypes {
+        result(skip: $skip, take: $take, where: $where) {
+            items {
+                name
+                id
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation request_create($input: RequestInput) {
+    request_create(input: $input) {
+        status
+    }
+}
+
+mutation gateApproval_createDelivery($input: CreateGateApprovalDeliveryInput) {
+    gateApproval_createDelivery(input: $input) {
+        result {
+            securityCode
+        }
+        status
+    }
+}
+
+mutation gateApproval_createCab($input: CreateGateApprovalCabInput) {
+    gateApproval_createCab(input: $input) {
+        result {
+            securityCode
+        }
+        status
+    }
+}
+
+mutation gateApproval_createFrequentVisitor($input: CreateGateApprovalFrequentVisitorInput) {
+    gateApproval_createFrequentVisitor(input: $input) {
+        result {
+            securityCode
+        }
+        status
+    }
+}
+
+mutation gateApproval_createOneTimeVisitor($input: CreateGateApprovalOneTimeVisitorInput) {
+    gateApproval_createOneTimeVisitor(input: $input) {
+        result {
+            securityCode
+        }
+        status
+    }
+}
+
+query payment_getPayments(
+    $skip: Int
+    $take: Int
+    $where: PaymentFilterInput
+    $order: [PaymentSortInput!]
+) {
+    payment_getPayments {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                amount
+                id
+                paymentStatus
+                dueDate
+                createdDate
+            }
+
+            totalCount
+        }
+        status
+    }
+}

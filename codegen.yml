@@ -1,0 +1,13 @@
+overwrite: true
+schema: 'https://aps-ccms-qa.azurewebsites.net/graphql/'
+documents: 'src/graphql/**/*.gql'
+generates:
+    src/graphql/generated.tsx:
+        plugins:
+            - typescript
+            - typescript-operations
+            - typescript-react-query
+        config:
+            addInfiniteQuery: true
+            fetcher:
+                func: 'src/graphql/fetcher#fetcher'

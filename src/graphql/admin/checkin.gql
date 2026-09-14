@@ -1,0 +1,11 @@
+mutation attendance_securityCheckIn($securityId: String) {
+    attendance_securityCheckIn(securityId: $securityId) {
+        status
+    }
+}
+
+mutation attendance_securityCheckOut($securityId: String) {
+    attendance_securityCheckOut(securityId: $securityId) {
+        status
+    }
+}

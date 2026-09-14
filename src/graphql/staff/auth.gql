@@ -1,0 +1,5 @@
+mutation staffSignup($input: StaffSignupInput) {
+    user_signupStaff(input: $input) {
+        status
+    }
+}

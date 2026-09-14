@@ -1,0 +1,145 @@
+query totalbuilding {
+    complex_getComplexes {
+        result {
+            totalCount
+        }
+        status
+    }
+    block_getBlocks {
+        result {
+            totalCount
+        }
+        status
+    }
+    flat_getFlats {
+        result {
+            totalCount
+        }
+        status
+    }
+    floor_getFloors {
+        result {
+            totalCount
+        }
+        status
+    }
+
+    employmentType_getEmploymentTypes {
+        result {
+            totalCount
+        }
+        status
+    }
+    residentFlat_getResidentFlats {
+        result {
+            totalCount
+        }
+        status
+    }
+
+    user_getSecurities {
+        result {
+            totalCount
+        }
+        status
+    }
+    complaintType_getComplaintTypes {
+        result {
+            totalCount
+        }
+        status
+    }
+    serviceType_getServiceTypes {
+        result {
+            totalCount
+        }
+        status
+    }
+    announcement_getAnnouncements {
+        result {
+            totalCount
+        }
+        status
+    }
+    maintenanceType_getMaintenanceTypes {
+        result {
+            totalCount
+        }
+        status
+    }
+}
+
+query totalComplex {
+    complex_getComplexes {
+        result {
+            totalCount
+        }
+        status
+    }
+    block_getBlocks {
+        result {
+            totalCount
+        }
+        status
+    }
+    flat_getFlats {
+        result {
+            totalCount
+        }
+        status
+    }
+    floor_getFloors {
+        result {
+            totalCount
+        }
+        status
+    }
+    department_getDepartments {
+        result {
+            totalCount
+        }
+        status
+    }
+    employmentType_getEmploymentTypes {
+        result {
+            totalCount
+        }
+        status
+    }
+}
+
+query totalComplexblockfloorflat {
+    complex_getComplexes {
+        result {
+            totalCount
+        }
+        status
+    }
+    block_getBlocks {
+        result {
+            totalCount
+        }
+        status
+    }
+    flat_getFlats {
+        result {
+            totalCount
+        }
+        status
+    }
+    floor_getFloors {
+        result {
+            totalCount
+        }
+        status
+    }
+}
+
+query user_getStaffstotal {
+    user_getStaffs {
+        result {
+            totalCount
+        }
+        status
+    }
+}

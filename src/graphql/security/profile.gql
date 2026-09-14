@@ -1,0 +1,31 @@
+mutation securityProfileUpdate(
+    $firstName: String
+    $lastName: String
+    $dateOfBirth: DateTime!
+    $phoneNumber: String
+    $gender: Gender!
+    $yearsOfExperience: Int!
+    $activeStatus: ActiveStatus!
+    $complexId: Int!
+    $id: Int!
+    $employmentTypeId: Int!
+    $dateOfJoining: DateTime!
+) {
+    user_updateSecurityProfile(
+        input: {
+            firstName: $firstName
+            lastName: $lastName
+            dateOfBirth: $dateOfBirth
+            phoneNumber: $phoneNumber
+            gender: $gender
+            yearsOfExperience: $yearsOfExperience
+            activeStatus: $activeStatus
+            complexId: $complexId
+            id: $id
+            employmentTypeId: $employmentTypeId
+            dateOfJoining: $dateOfJoining
+        }
+    ) {
+        status
+    }
+}

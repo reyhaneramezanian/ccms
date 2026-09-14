@@ -1,0 +1,43 @@
+query adminVisitorsGet(
+    $skip: Int
+    $take: Int
+    $where: FrequentVisitorFilterInput
+    $order: [FrequentVisitorSortInput!]
+) {
+    frequentVisitor_getFrequentVisitors {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                name
+                description
+                activeStatus
+                frequentVisitorComplexes {
+                    complex {
+                        name
+                    }
+                    complexId
+                }
+            }
+        }
+        status
+    }
+}
+
+mutation adminVisitorCreate($input: FrequentVisitorInput) {
+    frequentVisitor_create(input: $input) {
+        status
+    }
+}
+
+mutation adminVisitorUpdate($input: FrequentVisitorInput) {
+    frequentVisitor_update(input: $input) {
+        status
+    }
+}
+
+mutation adminVisitorDelete($entityId: Int!) {
+    frequentVisitor_delete(entityId: $entityId) {
+        code
+        value
+    }
+}

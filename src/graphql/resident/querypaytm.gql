@@ -1,0 +1,165 @@
+mutation payment_initiateChargeWallet($input: InitiateChargeInput) {
+    payment_initiateChargeWallet(input: $input) {
+        result {
+            orderId
+            token
+            tokenType
+            amount
+            statusCode
+            statusMessage
+        }
+        status
+    }
+}
+
+mutation payment_verifyChargeWallet($orderId: String) {
+    payment_verifyChargeWallet(orderId: $orderId) {
+        status
+    }
+}
+
+query payment_getPaymentBills(
+    $skip: Int
+    $take: Int
+    $where: PaymentBillFilterInput
+    $order: [PaymentBillSortInput!]
+) {
+    payment_getPaymentBills {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                paymentType
+                amount
+                dueDate
+                paymentStatus
+                previousMonthReading
+                currentMonthReading
+                utilityRate
+                utilityType
+                consumed
+                receivedOn
+                createdDate
+                flatId
+                flat {
+                    name
+                    id
+                    floorId
+                    floor {
+                        name
+                        id
+                        blockId
+                        block {
+                            name
+                            id
+
+                            complex {
+                                name
+                                id
+                            }
+                            complexId
+                        }
+                    }
+                }
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+query payment_getPaymentMiscellaneousMaintenances(
+    $skip: Int
+    $take: Int
+    $where: PaymentMiscellaneousMaintenanceFilterInput
+    $order: [PaymentMiscellaneousMaintenanceSortInput!]
+) {
+    payment_getPaymentMiscellaneousMaintenances {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                amount
+                dueDate
+                paymentStatus
+                createdDate
+                receivedOn
+                paymentType
+                comment
+                maintenanceType {
+                    name
+                    id
+                }
+                flatId
+                flat {
+                    name
+                    id
+                    floorId
+                    floor {
+                        name
+                        id
+                        blockId
+                        block {
+                            name
+                            id
+
+                            complex {
+                                name
+                                id
+                            }
+                            complexId
+                        }
+                    }
+                }
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation payment_payWithWallet($paymentIds: [Int!]) {
+    payment_payWithWallet(paymentIds: $paymentIds) {
+        status
+    }
+}
+
+mutation payment_initiateOnlinePayment($input: InitiateOnlinePaymentInput) {
+    payment_initiateOnlinePayment(input: $input) {
+        result {
+            orderId
+            token
+            tokenType
+            amount
+            statusCode
+            statusMessage
+        }
+        status
+    }
+}
+
+mutation payment_verifyOnlinePayment($orderId: String) {
+    payment_verifyOnlinePayment(orderId: $orderId) {
+        status
+    }
+}
+
+query payment_getCharges(
+    $flatId: Int!
+    $skip: Int
+    $take: Int
+    $where: ChargeDtoFilterInput
+    $order: [ChargeDtoSortInput!]
+) {
+    payment_getCharges(flatId: $flatId) {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                amount
+                isVedified
+                createdAt
+                id
+            }
+
+            totalCount
+        }
+        status
+    }
+}

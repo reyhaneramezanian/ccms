@@ -1,0 +1,6 @@
+mutation request_changeRequestStatus($entityId: Int!, $newStatus: RequestStatus!) {
+    request_changeRequestStatus(entityId: $entityId, newStatus: $newStatus) {
+        code
+        value
+    }
+}

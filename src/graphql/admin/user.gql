@@ -1,0 +1,74 @@
+query adminUserGet {
+    user_getSuperAdmin(userId: 1) {
+        result {
+            id
+            userType
+            firstName
+            lastName
+            phoneNumber
+            email
+            gender
+            activeStatus
+            dateOfBirth
+            photoUrl
+        }
+        status
+    }
+}
+
+mutation adminUserUpdate(
+    $id: Int!
+    $firstName: String
+    $lastName: String
+    $dateOfBirth: DateTime!
+    $phoneNumber: String
+    $activeStatus: ActiveStatus!
+    $gender: Gender!
+) {
+    user_updateSuperAdminProfile(
+        input: {
+            id: $id
+            firstName: $firstName
+            lastName: $lastName
+            dateOfBirth: $dateOfBirth
+            phoneNumber: $phoneNumber
+            activeStatus: $activeStatus
+            gender: $gender
+        }
+    ) {
+        status
+    }
+}
+
+query user_getCurrentSuperAdmin {
+    user_getCurrentSuperAdmin {
+        result {
+            isMaster
+            userType
+            firstName
+            lastName
+            photoUrl
+            gender
+            dateOfBirth
+            phoneNumber
+            activeStatus
+            isActive
+            isInactive
+            approvalStatus
+            accountDeleted
+            externalId
+            email
+            id
+            isDeleted
+            createdDate
+            lastModifiedDate
+        }
+        status
+    }
+}
+
+mutation user_updateSuperAdminProfile($input: SuperAdminUpdateInput) {
+    user_updateSuperAdminProfile(input: $input) {
+        status
+    }
+}

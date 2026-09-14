@@ -1,0 +1,248 @@
+query gateManagementGet(
+    $skip: Int
+    $take: Int
+    $where: GateApprovalFilterInput
+    $order: [GateApprovalSortInput!]
+) {
+    gateApproval_getGateApprovals {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            totalCount
+            items {
+                id
+                gateApprovalMode
+                gateApprovalType
+                approvalStatus
+                start
+                end
+                securityCode
+                residentFlat {
+                    resident {
+                        firstName
+                        lastName
+                        phoneNumber
+                    }
+                    flat {
+                        id
+                        name
+                        floor {
+                            id
+                            name
+                            block {
+                                id
+                                name
+                                complex {
+                                    id
+                                    name
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        status
+    }
+}
+
+query gateManagementDeliveryGet(
+    $skip: Int
+    $take: Int
+    $where: GateApprovalDeliveryFilterInput
+    $order: [GateApprovalDeliverySortInput!]
+) {
+    gateApproval_getDeliveries {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                start
+                end
+                companyName
+                packageLeavingLocation
+                approvalStatus
+                additionalInformation
+                securityCode
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+query gateManagementFrequentVisitorGet(
+    $skip: Int
+    $take: Int
+    $where: GateApprovalFrequentVisitorFilterInput
+    $order: [GateApprovalFrequentVisitorSortInput!]
+) {
+    gateApproval_getFrequentVisitors {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                visitorFirstName
+                visitorLastName
+                visitorPhoneNumber
+                licensePlate
+                start
+                end
+                securityCode
+                approvalStatus
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+query gateManagementOneTimeVisitorGet(
+    $skip: Int
+    $take: Int
+    $where: GateApprovalOneTimeVisitorFilterInput
+    $order: [GateApprovalOneTimeVisitorSortInput!]
+) {
+    gateApproval_getOneTimeVisitors {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                visitorFirstName
+                visitorLastName
+                visitorPhoneNumber
+                licensePlate
+                start
+                end
+                approvalStatus
+                securityCode
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+query gateManagementCabGet(
+    $skip: Int
+    $take: Int
+    $where: GateApprovalCabFilterInput
+    $order: [GateApprovalCabSortInput!]
+) {
+    gateApproval_getCabs {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                companyName
+                licensePlate
+                start
+                end
+                securityCode
+                approvalStatus
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation gateManagementChangeStatus(
+    $gateApprovalId: Int!
+    $gateApprovalStatus: GateApprovalStatus!
+) {
+    gateApproval_changeApprovalStatus(
+        gateApprovalId: $gateApprovalId
+        gateApprovalStatus: $gateApprovalStatus
+    ) {
+        status
+    }
+}
+
+mutation gateManagementDeliveryCreate($input: CreateGateApprovalDeliveryInput) {
+    gateApproval_createDelivery(input: $input) {
+        result {
+            securityCode
+        }
+        status
+    }
+}
+
+mutation gateManagementFrequentVisitorCreate($input: CreateGateApprovalFrequentVisitorInput) {
+    gateApproval_createFrequentVisitor(input: $input) {
+        result {
+            securityCode
+        }
+        status
+    }
+}
+
+mutation gateManagementOneTimeVisitorCreate($input: CreateGateApprovalOneTimeVisitorInput) {
+    gateApproval_createOneTimeVisitor(input: $input) {
+        status
+    }
+}
+
+mutation gateManagementCabCreate($input: CreateGateApprovalCabInput) {
+    gateApproval_createCab(input: $input) {
+        result {
+            securityCode
+        }
+        status
+    }
+}
+
+mutation gateManagementDeliveryUpdate($input: UpdateGateApprovalDeliveryInput) {
+    gateApproval_updateDelivery(input: $input) {
+        result {
+            securityCode
+        }
+        status
+    }
+}
+
+mutation gateManagementFrequentVisitorUpdate($input: UpdateGateApprovalFrequentVisitorInput) {
+    gateApproval_updateFrequentVisitor(input: $input) {
+        result {
+            securityCode
+        }
+        status
+    }
+}
+
+mutation gateManagementOneTimeVisitorUpdate($input: CreateGateApprovalOneTimeVisitorInput) {
+    gateApproval_updateOneTimeVisitor(input: $input) {
+        status
+    }
+}
+
+mutation gateManagementCabUpdate($input: CreateGateApprovalCabInput) {
+    gateApproval_updateCab(input: $input) {
+        result {
+            securityCode
+        }
+        status
+    }
+}
+
+mutation gateManagementDeliveryDelete($entityId: Int!) {
+    gateApproval_deleteDelivery(entityId: $entityId) {
+        code
+        value
+    }
+}
+
+mutation gateManagementFrequentVisitorDelete($entityId: Int!) {
+    gateApproval_deleteFrequentVisitor(entityId: $entityId) {
+        code
+        value
+    }
+}
+
+mutation gateManagementOneTimeVisitorDelete($entityId: Int!) {
+    gateApproval_deleteOneTimeVisitor(entityId: $entityId) {
+        code
+        value
+    }
+}
+
+mutation gateManagementCabDelete($entityId: Int!) {
+    gateApproval_deleteCab(entityId: $entityId) {
+        code
+        value
+    }
+}

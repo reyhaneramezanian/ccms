@@ -1,0 +1,59 @@
+query announcement_getAnnouncements(
+    $skip: Int
+    $take: Int
+    $where: AnnouncementFilterInput
+    $order: [AnnouncementSortInput!]
+) {
+    announcement_getAnnouncements {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                title
+                date
+                message
+                announcementType {
+                    name
+                    id
+                }
+            }
+
+            totalCount
+        }
+        status
+    }
+}
+
+query user_getCurrentSecurity {
+    user_getCurrentSecurity {
+        result {
+            dateOfJoining
+            middleName
+            securityId
+            yearsOfExperience
+            complexId
+            complex {
+                name
+            }
+            userType
+            firstName
+            lastName
+            photoUrl
+            gender
+            dateOfBirth
+            phoneNumber
+            activeStatus
+            isActive
+            isInactive
+            approvalStatus
+            accountDeleted
+            externalId
+            email
+            employmentTypeId
+            id
+            isDeleted
+            createdDate
+            lastModifiedDate
+        }
+        status
+    }
+}

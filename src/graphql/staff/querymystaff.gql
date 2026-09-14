@@ -1,0 +1,38 @@
+query user_getMyStaffs(
+    $skip: Int
+    $take: Int
+    $where: StaffFilterInput
+    $order: [StaffSortInput!]
+    $requestId: Int
+) {
+    user_getMyStaffs(requestId: $requestId) {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                photoUrl
+                firstName
+                lastName
+                employmentType {
+                    name
+                }
+                phoneNumber
+                email
+                id
+                middleName
+                gender
+                dateOfBirth
+                alternatePhone
+                alternateEmail
+                address
+                dateOfJoining
+                dateOfTermination
+                timeSheets {
+                    dayOfWeek
+                    from
+                    to
+                }
+            }
+            totalCount
+        }
+        status
+    }
+}

@@ -1,0 +1,98 @@
+export const MedicineData = [
+    {
+        title: 'Skin Care',
+        category: 'main category',
+        price: '25$',
+        image: '/images/medicine/medicine1.jpg',
+    },
+    {
+        title: 'Heart Pill',
+        category: 'main category',
+        price: '25$',
+        image: '/images/medicine/medicine2.jpg',
+    },
+    {
+        title: 'Skin Cream',
+        category: 'main category',
+        price: '25$',
+        image: '/images/medicine/medicine3.jpg',
+    },
+    {
+        title: 'Liver Pill',
+        category: 'main category',
+        price: '25$',
+        image: '/images/medicine/medicine4.jpg',
+    },
+    {
+        title: 'Skin Care',
+        category: 'main category',
+        price: '25$',
+        image: '/images/medicine/medicine1.jpg',
+    },
+    {
+        title: 'Heart Pill',
+        category: 'main category',
+        price: '25$',
+        image: '/images/medicine/medicine2.jpg',
+    },
+    {
+        title: 'Skin Cream',
+        category: 'main category',
+        price: '25$',
+        image: '/images/medicine/medicine3.jpg',
+    },
+    {
+        title: 'Liver Pill',
+        category: 'main category',
+        price: '25$',
+        image: '/images/medicine/medicine4.jpg',
+    },
+    {
+        title: 'Skin Care',
+        category: 'main category',
+        price: '25$',
+        image: '/images/medicine/medicine1.jpg',
+    },
+    {
+        title: 'Heart Pill',
+        category: 'main category',
+        price: '25$',
+        image: '/images/medicine/medicine2.jpg',
+    },
+    {
+        title: 'Skin Cream',
+        category: 'main category',
+        price: '25$',
+        image: '/images/medicine/medicine3.jpg',
+    },
+    {
+        title: 'Liver Pill',
+        category: 'main category',
+        price: '25$',
+        image: '/images/medicine/medicine4.jpg',
+    },
+    {
+        title: 'Skin Care',
+        category: 'main category',
+        price: '25$',
+        image: '/images/medicine/medicine1.jpg',
+    },
+    {
+        title: 'Heart Pill',
+        category: 'main category',
+        price: '25$',
+        image: '/images/medicine/medicine2.jpg',
+    },
+    {
+        title: 'Skin Cream',
+        category: 'main category',
+        price: '25$',
+        image: '/images/medicine/medicine3.jpg',
+    },
+    {
+        title: 'Liver Pill',
+        category: 'main category',
+        price: '25$',
+        image: '/images/medicine/medicine4.jpg',
+    },
+]

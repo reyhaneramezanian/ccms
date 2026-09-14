@@ -1,0 +1,52 @@
+query adminServiceTypeGet(
+    $skip: Int
+    $take: Int
+    $where: ServiceTypeFilterInput
+    $order: [ServiceTypeSortInput!]
+) {
+    serviceType_getServiceTypes {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                name
+                isDeleted
+                departmentId
+                activeStatus
+                department {
+                    name
+                }
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation adminServiceTypeCreate($input: ServiceTypeInput) {
+    serviceType_create(input: $input) {
+        result {
+            id
+            name
+            activeStatus
+        }
+        status
+    }
+}
+
+mutation adminServiceTypeUpdate($input: ServiceTypeInput) {
+    serviceType_update(input: $input) {
+        result {
+            id
+            name
+            activeStatus
+        }
+        status
+    }
+}
+
+mutation adminServiceTypeDelete($entityId: Int!) {
+    serviceType_delete(entityId: $entityId) {
+        value
+        code
+    }
+}

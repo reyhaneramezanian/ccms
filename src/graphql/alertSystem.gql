@@ -1,0 +1,60 @@
+query alertsSystemGet($skip: Int, $take: Int, $where: AlertFilterInput, $order: [AlertSortInput!]) {
+    alert_getAlerts {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                complex {
+                    name
+                }
+                flat {
+                    name
+                    floor {
+                        name
+                        block {
+                            name
+                            complex {
+                                name
+                            }
+                        }
+                    }
+                }
+
+                floor {
+                    name
+                    block {
+                        name
+                        complex {
+                            name
+                        }
+                    }
+                }
+
+                block {
+                    name
+                    complex {
+                        name
+                    }
+                }
+                alertType
+                description
+                date
+                resident {
+                    phoneNumber
+                }
+                staff {
+                    phoneNumber
+                }
+                security {
+                    phoneNumber
+                }
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation alertSystemCreate($input: AlertInput) {
+    alert_create(input: $input) {
+        status
+    }
+}

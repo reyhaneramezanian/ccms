@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "lib": ["es6", "esnext", "dom"],
+        "moduleResolution": "node",
+        "noEmit": true,
+        "strict": false,
+        "target": "esnext",
+        "baseUrl": ".",
+        "paths": {
+            "@/components/*": ["src/components/*"],
+            "@/provider/*": ["src/provider/*"],
+            "@/i18n/*": ["src/i18n/*"],
+            "@/layout/*": ["src/layout/*"],
+            "@/utils/*": ["src/utils/*"]
+        },
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "module": "esnext",
+        "resolveJsonModule": true,
+        "incremental": true
+    },
+    "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"],
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        "src/components/home/Carousel.jsx",
+        "pages/index.js",
+        "src/components/admin/alertSystem/editModal.tss"
+    ],
+    "typeRoots": ["./node_modules/@types/", "./src/@types/"]
+}

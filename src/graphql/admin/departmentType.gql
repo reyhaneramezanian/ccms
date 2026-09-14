@@ -1,0 +1,48 @@
+query adminDepartmentTypeGet(
+    $skip: Int
+    $take: Int
+    $where: DepartmentFilterInput
+    $order: [DepartmentSortInput!]
+) {
+    department_getDepartments {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                name
+                activeStatus
+                isDeleted
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation adminDepartmentTypeCreate($input: DepartmentInput) {
+    department_create(input: $input) {
+        result {
+            id
+            name
+            activeStatus
+        }
+        status
+    }
+}
+
+mutation adminDepartmentTypeUpdate($input: DepartmentInput) {
+    department_update(input: $input) {
+        result {
+            id
+            name
+            activeStatus
+        }
+        status
+    }
+}
+
+mutation adminDepartmentTypeDelete($entityId: Int!) {
+    department_delete(entityId: $entityId) {
+        value
+        code
+    }
+}

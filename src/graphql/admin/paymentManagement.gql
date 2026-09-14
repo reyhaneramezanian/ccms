@@ -1,0 +1,57 @@
+query adminPaymentManagementGet(
+    $skip: Int
+    $take: Int
+    $where: PaymentFilterInput
+    $order: [PaymentSortInput!]
+) {
+    payment_getPayments {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+
+                flat {
+                    id
+                    name
+                    floor {
+                        id
+                        name
+                        block {
+                            id
+                            name
+                            complex {
+                                id
+                                name
+                            }
+                        }
+                    }
+                }
+                createdDate
+                dueDate
+                receivedOn
+
+                amount
+                paymentStatus
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation adminPaymentManagementCreate($input: CreatePaymentInput!) {
+    payment_create(input: $input) {
+        status
+    }
+}
+
+mutation adminPaymentManagementUpdate($input: EditPaymentInput!) {
+    payment_update(input: $input) {
+        status
+    }
+}
+
+mutation adminPaymentManagementDelete($id: Int!) {
+    payment_delete(id: $id) {
+        status
+    }
+}

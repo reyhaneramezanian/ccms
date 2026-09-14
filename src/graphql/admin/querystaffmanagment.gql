@@ -1,0 +1,79 @@
+query attendance_getStaffAttendances(
+    $skip: Int
+    $take: Int
+    $where: AttendanceFilterInput
+    $order: [AttendanceSortInput!]
+) {
+    attendance_getStaffAttendances {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                checkInDateTime
+                checkOutDateTime
+                id
+                staffId
+                securityId
+                complexId
+                complex {
+                    name
+                }
+                security {
+                    employmentType {
+                        name
+                    }
+                    middleName
+                    activeStatus
+                    firstName
+                    lastName
+                    phoneNumber
+                    email
+                    complex {
+                        name
+                    }
+                    dateOfBirth
+                    gender
+                }
+                staff {
+                    activeStatus
+                    firstName
+                    lastName
+                    gender
+                    dateOfBirth
+                    alternatePhone
+                    alternateEmail
+                    phoneNumber
+                    email
+
+                    address
+                    employmentType {
+                        name
+                    }
+                    dateOfJoining
+                    dateOfTermination
+                    activeStatus
+                    middleName
+                    departmentId
+                    departmentManagers {
+                        id
+                    }
+                    department {
+                        name
+                    }
+                }
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation attendance_staffCheckIn($staffId: String) {
+    attendance_staffCheckIn(staffId: $staffId) {
+        status
+    }
+}
+
+mutation attendance_staffCheckOut($staffId: String) {
+    attendance_staffCheckOut(staffId: $staffId) {
+        status
+    }
+}

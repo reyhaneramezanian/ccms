@@ -1,0 +1,106 @@
+query complaint_getComplaints(
+    $skip: Int
+    $take: Int
+    $where: ComplaintFilterInput
+    $order: [ComplaintSortInput!]
+) {
+    complaint_getComplaints {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                date
+                title
+                message
+                comment
+                id
+                flat {
+                    name
+                    id
+                    floor {
+                        name
+                        id
+                        block {
+                            name
+                            id
+                            complex {
+                                name
+                                id
+                            }
+                        }
+                    }
+                }
+                complaintStatus
+                complaintType {
+                    name
+                    id
+                }
+            }
+
+            totalCount
+        }
+        status
+    }
+}
+
+mutation complaint_delete($entityId: Int!) {
+    complaint_delete(entityId: $entityId) {
+        code
+        value
+    }
+}
+
+mutation complaint_create($input: ComplaintInput) {
+    complaint_create(input: $input) {
+        status
+    }
+}
+
+mutation complaint_update($input: ComplaintInput) {
+    complaint_update(input: $input) {
+        status
+    }
+}
+
+query complaintType_getComplaintTypes(
+    $skip: Int
+    $take: Int
+    $where: ComplaintTypeFilterInput
+    $order: [ComplaintTypeSortInput!]
+) {
+    complaintType_getComplaintTypes {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                name
+                activeStatus
+                id
+            }
+
+            totalCount
+        }
+        status
+    }
+}
+
+mutation complaintType_delete($entityId: Int!) {
+    complaintType_delete(entityId: $entityId) {
+        code
+        value
+    }
+}
+
+mutation complaintType_create($input: ComplaintTypeInput) {
+    complaintType_create(input: $input) {
+        status
+    }
+}
+
+mutation complaintType_update($input: ComplaintTypeInput) {
+    complaintType_update(input: $input) {
+        status
+    }
+}
+
+mutation complaint_convertComplaintToRequest($input: ConvertComplaintToRequestInput) {
+    complaint_convertComplaintToRequest(input: $input) {
+        status
+    }
+}

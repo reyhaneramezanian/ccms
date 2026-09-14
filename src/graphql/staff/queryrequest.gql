@@ -1,0 +1,237 @@
+query request_getMyRequests(
+    $skip: Int
+    $take: Int
+    $where: RequestFilterInput
+    $order: [RequestSortInput!]
+) {
+    request_getMyRequests {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                requestStatus
+                residentFlat {
+                    resident {
+                        firstName
+                        lastName
+                    }
+                    flat {
+                        name
+                        floor {
+                            name
+                            block {
+                                name
+                                complex {
+                                    name
+                                }
+                            }
+                        }
+                    }
+                }
+                staff {
+                    firstName
+                    lastName
+                    phoneNumber
+                    staffComplexes {
+                        complexId
+                        complex {
+                            name
+                            blocks {
+                                name
+                                id
+                                floors {
+                                    name
+                                    id
+                                    flats {
+                                        name
+                                        id
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                serviceType {
+                    id
+                    name
+                    departmentId
+                    department {
+                        id
+                        name
+                    }
+                }
+                startDate
+                endDate
+                startTime
+                endTime
+                emergency
+                residentFlatId
+                serviceTypeId
+                staffId
+                requestStatus
+                id
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation request_assignToStaff($entityId: Int!, $staffId: Int!) {
+    request_assignToStaff(entityId: $entityId, staffId: $staffId) {
+        code
+        value
+    }
+}
+
+mutation request_changeEmergencyStatus($entityId: Int!, $emergencyStatus: Boolean!) {
+    request_changeEmergencyStatus(entityId: $entityId, emergencyStatus: $emergencyStatus) {
+        code
+        value
+    }
+}
+
+mutation request_assignToMe($entityId: Int!) {
+    request_assignToMe(entityId: $entityId) {
+        code
+        value
+    }
+}
+
+query request_getNotAssignedRequests(
+    $skip: Int
+    $take: Int
+    $where: RequestFilterInput
+    $order: [RequestSortInput!]
+) {
+    request_getNotAssignedRequests {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                residentFlat {
+                    resident {
+                        firstName
+                        lastName
+                    }
+                    flat {
+                        name
+                        floor {
+                            name
+                            block {
+                                name
+                                complex {
+                                    name
+                                }
+                            }
+                        }
+                    }
+                }
+                staff {
+                    firstName
+                    lastName
+
+                    staffComplexes {
+                        complexId
+                        complex {
+                            name
+                            blocks {
+                                name
+                                id
+                                floors {
+                                    name
+                                    id
+                                    flats {
+                                        name
+                                        id
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                serviceType {
+                    name
+                }
+                startDate
+                endDate
+                startTime
+                endTime
+                emergency
+                residentFlatId
+                serviceTypeId
+                staffId
+                requestStatus
+                id
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+query request_getAllRequests(
+    $skip: Int
+    $take: Int
+    $where: RequestFilterInput
+    $order: [RequestSortInput!]
+) {
+    request_getAllRequests {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                residentFlat {
+                    resident {
+                        firstName
+                        lastName
+                    }
+                    flat {
+                        name
+                        floor {
+                            name
+                            block {
+                                name
+                                complex {
+                                    name
+                                }
+                            }
+                        }
+                    }
+                }
+                staff {
+                    firstName
+                    lastName
+
+                    staffComplexes {
+                        complexId
+                        complex {
+                            name
+                            blocks {
+                                name
+                                id
+                                floors {
+                                    name
+                                    id
+                                    flats {
+                                        name
+                                        id
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                serviceType {
+                    name
+                }
+                startDate
+                endDate
+                startTime
+                endTime
+                emergency
+                residentFlatId
+                serviceTypeId
+                staffId
+                requestStatus
+                id
+            }
+            totalCount
+        }
+        status
+    }
+}

@@ -1,0 +1,31 @@
+query notificationsGet(
+    $skip: Int
+    $take: Int
+    $where: NotificationFilterInput
+    $order: [NotificationSortInput!]
+) {
+    notification_getNotifications {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                notificationType
+                createdDate
+                isSeen
+                residentFlat {
+                    resident {
+                        firstName
+                        lastName
+                    }
+                }
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation notification_readNotification($id: Int!) {
+    notification_readNotification(id: $id) {
+        status
+    }
+}

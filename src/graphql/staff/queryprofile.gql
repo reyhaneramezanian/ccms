@@ -1,0 +1,56 @@
+query user_getCurrentStaff {
+    user_getCurrentStaff {
+        result {
+            staffId
+            middleName
+            address
+            alternatePhone
+            alternateEmail
+
+            employmentTypeId
+            employmentType {
+                name
+            }
+            departmentId
+            department {
+                name
+            }
+            dateOfJoining
+            dateOfTermination
+            requests {
+                startDate
+            }
+            departmentManagers {
+                id
+            }
+            staffComplexes {
+                staffId
+            }
+            timeSheets {
+                staffId
+            }
+            alerts {
+                date
+            }
+            userType
+            firstName
+            lastName
+            photoUrl
+            gender
+            dateOfBirth
+            phoneNumber
+            activeStatus
+            isActive
+            isInactive
+            approvalStatus
+            accountDeleted
+            externalId
+            email
+            id
+            isDeleted
+            createdDate
+            lastModifiedDate
+        }
+        status
+    }
+}

@@ -1,0 +1,11 @@
+mutation securitySignup($input: SecuritySingupInput) {
+    user_signupSecurity(input: $input) {
+        status
+    }
+}
+
+mutation gateApproval_makeCall($gateApprovalId: Int!) {
+    gateApproval_makeCall(gateApprovalId: $gateApprovalId) {
+        status
+    }
+}

@@ -1,0 +1,18 @@
+query securityUserGet {
+    user_getCurrentSecurity {
+        result {
+            id
+            securityId
+            yearsOfExperience
+            complexId
+            firstName
+            lastName
+            phoneNumber
+            email
+            dateOfBirth
+            gender
+            activeStatus
+        }
+        status
+    }
+}

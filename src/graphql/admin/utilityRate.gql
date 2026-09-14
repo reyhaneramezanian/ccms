@@ -1,0 +1,24 @@
+query adminUtilityRateGet(
+    $skip: Int
+    $take: Int
+    $where: UtilityRateFilterInput
+    $order: [UtilityRateSortInput!]
+) {
+    utilityRate_getUtilityRates {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                utilityType
+                rate
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation adminUtilityRateUpdate($input: UtilityRateInput) {
+    utilityRate_update(input: $input) {
+        status
+    }
+}

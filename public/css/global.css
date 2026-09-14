@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Helvetica%20Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+#nprogress .bar {
+    z-index: 99999 !important;
+    background-color: #ff9645 !important;
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #d6e1ff;
+    border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: #97a7d1;
+}
+
+@media (max-width: 900px) {
+    *::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url(/images/calender-time.png) no-repeat;
+    width: 25px;
+    height: 25px;
+    border-width: thin;
+    position: absolute;
+    right: 5px;
+}
+input[type='time']::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: none;
+    /* background: url(/images/calender-time.png) no-repeat;*/
+    width: 25px;
+    height: 25px;
+    border-width: thin;
+    position: absolute;
+    right: 5px;
+}
+
+input,
+textarea,
+button,
+select,
+a,
+div {
+    background-color: '#fff !important';
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a {
+    text-decoration: none;
+}
+
+.paginationlist {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    gap: 5px;
+    position: relative;
+}
+.paginationlist .page-num {
+    padding: 5px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-weight: 400;
+    color: #8b8b8b;
+    text-decoration: none;
+    display: none;
+}
+.paginationlist .page-num:hover {
+    background-color: #0342fe;
+    color: #f1e5fc;
+}
+.paginationlist .active {
+    background-color: #0342fe;
+    color: #f1e5fc;
+}
+/*[aria-label="Previous page"] , [aria-label="Next page"]{
+  color: #0342fe !important;
+  font-weight: bold !important;
+} 
+[aria-label="Previous page"]:hover , [aria-label="Next page"]:hover{
+	background-color: #0342fe;
+  font-weight: bold !important;
+  color: #f1e5fc !important;
+
+} */
+.image-gallery-left-nav,
+.image-gallery-right-nav {
+    padding: 0 !important;
+    top: 0 !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    bottom: 0 !important;
+    position: absolute;
+    transform: translatey(70%) !important;
+    -webkit-transform: translatey(70%) !important;
+    -moz-transform: translatey(70%) !important;
+    /* height: 30px;*/
+}
+.image-gallery-slides {
+    border-radius: 8px !important;
+}
+.image-gallery-right-nav {
+    right: 30% !important;
+}
+.image-gallery-left-nav {
+    left: 30% !important;
+}
+.paginationlist .next_page {
+    background-image: url(/images/Arrowleft.png);
+    padding: 0px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-weight: 400;
+    color: #8b8b8b;
+    text-decoration: none;
+    background-repeat: no-repeat;
+}
+.paginationlist .previous_page {
+    background-image: url(/images/ArrowRight.png);
+    padding: 0px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-weight: 400;
+    color: #8b8b8b;
+    text-decoration: none;
+    background-repeat: no-repeat;
+}
+.previous {
+    position: absolute;
+    left: 0;
+    top: -40px;
+}
+.next {
+    position: absolute;
+    right: 0;
+    top: -40px;
+}
+.image-gallery {
+    width: 140px !important;
+    height: 140px !important;
+}
+.image-gallery-slides .image-gallery-image {
+    width: 110px !important;
+    object-fit: cover !important;
+    height: 110px !important;
+    border-radius: 10px;
+}
+.fileuplod {
+    background-image: url('/public/images/button.png');
+}
+.css-183qczr-MuiGrid-root > .MuiGrid-item {
+    padding: 10px !important;
+}
+.css-1xgpz09-MuiFormHelperText-root,
+.css-zvhcyg-MuiFormHelperText-root {
+    color: #bf1a1a !important;
+}
+fieldset {
+    border: 0 !important;
+}
+
+.react-multiple-carousel__arrow {
+    background-color: transparent !important;
+    color: #000;
+}
+.react-multiple-carousel__arrow::before {
+    color: #000 !important;
+}
+.react-multiple-carousel__arrow--right {
+    right: calc(-3% + 1px) !important;
+}
+.react-multiple-carousel__arrow--left {
+    left: calc(-3% + 1px) !important;
+}
+.jss1 {
+    max-width: 100% !important;
+}
+.css-uwcd5u.SnackbarContainer-root {
+    min-height: 50px !important;
+}

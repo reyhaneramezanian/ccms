@@ -1,0 +1,47 @@
+query adminAnnouncementTypeGet(
+    $skip: Int
+    $take: Int
+    $where: AnnouncementTypeFilterInput
+    $order: [AnnouncementTypeSortInput!]
+) {
+    announcementType_getAnnouncementTypes {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                name
+                activeStatus
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation adminAnnouncementTypeCreate($input: AnnouncementTypeInput) {
+    announcementType_create(input: $input) {
+        result {
+            id
+            name
+            activeStatus
+        }
+        status
+    }
+}
+
+mutation adminAnnouncementTypeUpdate($input: AnnouncementTypeInput) {
+    announcementType_update(input: $input) {
+        result {
+            id
+            name
+            activeStatus
+        }
+        status
+    }
+}
+
+mutation adminAnnouncementTypeDelete($entityId: Int!) {
+    announcementType_delete(entityId: $entityId) {
+        code
+        value
+    }
+}

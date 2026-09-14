@@ -1,0 +1,343 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import * as adminstyle from '../../admin.style';
+import { Formik, Form, FieldArray, Field, useField } from 'formik';
+import { MSelectFormik } from '@/components/base/input/MSelect';
+import { MInputFormik } from '@/components/base/input/MInput';
+import * as Yup from 'yup';
+import { useSnackbar } from 'notistack';
+import { Select, Checkbox, Grid, Typography, Button, Box, MenuItem, Modal } from '@mui/material';
+import {
+    useUser_GetCurrentComplexManagerQuery,
+    useUser_UpdateComplexManagerMutation
+} from 'src/graphql/generated';
+import Deleteacount from 'src/assets/icons/deleteacount';
+import { Custom } from '@/components/shared/share/tick-close';
+import DeleteModal from './deleteModal';
+import { ACTIVE_STATUS, GenderOption } from 'src/data/options';
+import Editeprofile from 'src/assets/icons/editeprofile';
+import { useImageUploader, useUploadInput } from 'src/hooks/useMediaUploader';
+import { getFullImageUrl } from '@/utils/helper/ui';
+import { PHONE_VALIDATIONIndia, PHONE_VALIDATIONUsa } from '@/utils/helper/regexes';
+import useMutationErrorHandler from 'src/hooks/useMutationErrorHandler';
+import { LoadingButton } from '@mui/lab';
+import { setPageData } from 'src/redux/actions/actions';
+import storageKeys from 'src/data/storageKeys';
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: '#fff',
+    borderRadius: '7px !important',
+    border: '0px solid #fff !important',
+    p: 2
+};
+
+const Profile = () => {
+    const dispatch = useDispatch();
+    const { enqueueSnackbar } = useSnackbar();
+    const [gender, setgender] = useState(0);
+    const [activeStatu, setactiveStatu] = useState('');
+    const mutationErrorHandler = useMutationErrorHandler();
+    const pageData = useSelector(({ pageData }: any) => pageData);
+    const [show, setShow] = useState(false);
+    const [imageuser, setimageuser] = useState('');
+    const [imagenew, setimagenew] = useState('');
+    const [complexmanager, setcomplexmanager] = useState('');
+    const { uploadOnFile, state: stateimage } = useImageUploader();
+    const { InputComponent, onFilePick } = useUploadInput(uploadOnFile);
+
+    const { mutate, isLoading } = useUser_UpdateComplexManagerMutation();
+    const { data: datauser } = useUser_GetCurrentComplexManagerQuery();
+
+    useEffect(() => {
+        let complexname = '';
+        setgender(datauser?.user_getCurrentComplexManager?.result?.gender);
+        setactiveStatu(datauser?.user_getCurrentComplexManager?.result?.activeStatus);
+        datauser?.user_getCurrentComplexManager?.result?.complexManagerComplexes?.forEach(
+            (item, index) => {
+                complexname = item.complex.name + ' ,' + complexname;
+            }
+        );
+        setcomplexmanager(complexname);
+    }, [datauser]);
+
+    const handelsave = (e) => {
+        mutate(
+            {
+                input: {
+                    //externalId: datauser?.user_getCurrentComplexManager?.result?.externalId,
+                    gender: e.Gender,
+                    activeStatus: activeStatu,
+                    firstName: e.Firstname,
+                    lastName: e.Surname,
+                    phoneNumber: e.phoneNumber,
+                    // email: e.email,
+                    id: datauser?.user_getCurrentComplexManager?.result?.id,
+                    dateOfBirth: datauser?.user_getCurrentComplexManager?.result?.dateOfBirth,
+                    photoUrl: datauser?.user_getCurrentComplexManager?.result?.photoUrl
+                }
+            },
+            {
+                onSuccess: () => {
+                    localStorage.setItem(
+                        storageKeys.fullnameprofile,
+                        e.Firstname + ' ' + e.Surname
+                    );
+                    localStorage.setItem(
+                        storageKeys.imageprofile,
+                        imagenew === ''
+                            ? datauser?.user_getCurrentComplexManager?.result?.photoUrl
+                            : imagenew
+                    );
+                    dispatch(
+                        setPageData({
+                            ...pageData,
+                            imageprofile: datauser?.user_getCurrentComplexManager?.result?.photoUrl,
+                            fullnameprofile: e.Firstname + ' ' + e.Surname
+                        })
+                    );
+
+                    enqueueSnackbar('Operation was successful!', {
+                        variant: 'success'
+                    });
+                },
+                onError: (err) => {
+                    mutationErrorHandler(err, 'user_updateSuperAdminProfile');
+                }
+            }
+        );
+    };
+    const onclickdelete = () => {
+        dispatch(DeleteModal());
+    };
+    const onfiledelet = () => {
+        setShow(true);
+    };
+    const handleClose = () => {
+        setShow(false);
+    };
+    const handleimageUser = () => {
+        mutate(
+            {
+                input: {
+                    gender: datauser?.user_getCurrentComplexManager?.result?.gender,
+                    activeStatus: datauser?.user_getCurrentComplexManager?.result?.activeStatus,
+                    firstName: datauser?.user_getCurrentComplexManager?.result?.firstName,
+                    lastName: datauser?.user_getCurrentComplexManager?.result?.lastName,
+                    phoneNumber: datauser?.user_getCurrentComplexManager?.result?.phoneNumber,
+                    // email: e.email,
+                    id: datauser?.user_getCurrentComplexManager?.result?.id,
+                    dateOfBirth: datauser?.user_getCurrentComplexManager?.result?.dateOfBirth,
+                    photoUrl: ''
+                }
+            },
+            {
+                onSuccess: () => {
+                    localStorage.setItem(storageKeys.imageprofile, '');
+                    dispatch(
+                        setPageData({
+                            ...pageData,
+                            imageprofile: '',
+                            fullnameprofile:
+                                datauser?.user_getCurrentComplexManager?.result?.firstName +
+                                ' ' +
+                                datauser?.user_getCurrentComplexManager?.result?.lastName
+                        })
+                    );
+                    enqueueSnackbar('Operation was successful!', {
+                        variant: 'success'
+                    });
+                    setimageuser('');
+                    setShow(false);
+                },
+                onError: (err) => {
+                    mutationErrorHandler(err, 'user_updateSuperAdminProfile');
+                }
+            }
+        );
+    };
+    return (
+        <adminstyle.containerprofile>
+            <Formik
+                enableReinitialize
+                onSubmit={(v, handlers) => {
+                    handelsave(v);
+                }}
+                initialValues={{
+                    Firstname: datauser?.user_getCurrentComplexManager?.result?.firstName,
+                    Surname: datauser?.user_getCurrentComplexManager?.result?.lastName,
+                    Gender: gender,
+                    //   activeStatus: activeStatu,
+                    phoneNumber: datauser?.user_getCurrentComplexManager?.result?.phoneNumber,
+                    email: datauser?.user_getCurrentComplexManager?.result?.email
+                }}
+                validationSchema={Yup.object({
+                    Firstname: Yup.string().required('This field is required'),
+                    Surname: Yup.string().required('This field is required'),
+                    // Gender: Yup.string().required('This field is required'),
+                    //  activeStatus: Yup.string().required('This field is required'),
+                    phoneNumber: Yup.string()
+                        .required('This field is required')
+                        .matches(PHONE_VALIDATIONIndia, 'Please enter invalid number'),
+                    email: Yup.string().required('This field is required')
+                })}>
+                <Form>
+                    <adminstyle.modalFormRowWrapper>
+                        <adminstyle.rowpage>
+                            <adminstyle.cellpage>
+                                <div style={{ width: '96%' }}>
+                                    <MInputFormik
+                                        name="Firstname"
+                                        label="First name"
+                                        placeholder="First name"
+                                        fullWidth
+                                    />
+                                </div>
+                            </adminstyle.cellpage>
+                            <adminstyle.cellpage>
+                                <div style={{ width: '96%' }}>
+                                    <MInputFormik
+                                        style={{ width: '96%' }}
+                                        name="Surname"
+                                        label="Surname"
+                                        placeholder="Surname"
+                                        fullWidth
+                                    />
+                                </div>
+                            </adminstyle.cellpage>
+                            <adminstyle.cellpage>
+                                <MSelectFormik
+                                    style={{ width: '96%' }}
+                                    options={[
+                                        { option: 'None', value: null },
+                                        { option: 'Male', value: 'MALE' },
+                                        { option: 'Female', value: 'FEMALE' }
+                                    ]}
+                                    name="Gender"
+                                    label="Gender"
+                                    placeholder="Gender"
+                                    necessary={false}
+                                />
+                            </adminstyle.cellpage>
+                        </adminstyle.rowpage>
+                        <adminstyle.rowpage>
+                            <adminstyle.cellpage>
+                                <div style={{ width: '96%' }}>
+                                    <MInputFormik
+                                        name="phoneNumber"
+                                        label="Phone number"
+                                        placeholder="Phone"
+                                    />
+                                </div>
+                            </adminstyle.cellpage>
+                            <adminstyle.cellpage>
+                                <div style={{ width: '96%' }}>
+                                    <MInputFormik
+                                        name="email"
+                                        label="Email address"
+                                        placeholder="Email"
+                                        disabled
+                                    />
+                                </div>
+                            </adminstyle.cellpage>
+                            <adminstyle.cellpage></adminstyle.cellpage>
+                        </adminstyle.rowpage>
+                        <adminstyle.rowpage>
+                            <adminstyle.cellpage>
+                                Complexes
+                                <adminstyle.boxcomples>{complexmanager}</adminstyle.boxcomples>
+                            </adminstyle.cellpage>
+                        </adminstyle.rowpage>
+                    </adminstyle.modalFormRowWrapper>
+                    <adminstyle.rowprofile>
+                        <Box>
+                            <Custom style={{ marginBottom: '30px' }} onClick={onclickdelete}>
+                                <Deleteacount />
+                            </Custom>
+                        </Box>
+                    </adminstyle.rowprofile>
+                    <adminstyle.rowpage>
+                        <Box>
+                            <LoadingButton
+                                loading={isLoading}
+                                type="submit"
+                                variant="contained"
+                                color="primary">
+                                Save
+                            </LoadingButton>
+                        </Box>
+                    </adminstyle.rowpage>
+                </Form>
+            </Formik>
+            <Modal
+                style={{ border: '0px solid #fff !important' }}
+                keepMounted
+                open={show}
+                // onClose={handleClose}
+                aria-labelledby="keep-mounted-modal-title"
+                aria-describedby="keep-mounted-modal-description">
+                <Box sx={style}>
+                    <adminstyle.rowpage>
+                        <adminstyle.cellpage>
+                            Are you sure you want to delete your image?
+                        </adminstyle.cellpage>
+                    </adminstyle.rowpage>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            marginTop: '50px'
+                        }}>
+                        <LoadingButton
+                            loading={isLoading}
+                            sx={{
+                                textTransform: 'none',
+                                width: '170px',
+                                height: '36px',
+                                marginRight: '28px',
+                                backgroundColor: '#e63c49',
+                                borderRadius: '4px',
+                                color: '#fff' /*':hover': { backgroundColor: '#A587C2' } */
+                            }}
+                            onClick={handleimageUser}>
+                            <Typography
+                                sx={{
+                                    fontSize: '15px',
+                                    color: '#fff',
+                                    fontFamily: 'Helvetica Neue'
+                                }}>
+                                Yes
+                            </Typography>
+                        </LoadingButton>
+                        <Button
+                            sx={{
+                                textTransform: 'none',
+                                width: '170px',
+                                height: '36px',
+                                backgroundColor: '#fff',
+                                borderRadius: '4px',
+                                color: '#737373',
+                                border: '1px solid #b0b0b0',
+                                ':hover': { backgroundColor: '#fff' }
+                            }}
+                            onClick={handleClose}>
+                            <Typography
+                                sx={{
+                                    fontSize: '15px',
+                                    color: '#2B368F',
+                                    fontFamily: 'Helvetica Neue'
+                                }}>
+                                No
+                            </Typography>
+                        </Button>
+                    </div>
+                </Box>
+            </Modal>
+        </adminstyle.containerprofile>
+    );
+};
+export default Profile;

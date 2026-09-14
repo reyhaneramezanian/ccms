@@ -1,0 +1,48 @@
+query residentMyRequestsGet(
+    $skip: Int
+    $take: Int
+    $where: RequestFilterInput
+    $order: [RequestSortInput!]
+) {
+    request_getMyRequests {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                serviceType {
+                    id
+                    name
+                    department {
+                        id
+                        name
+                    }
+                }
+                startDate
+                endDate
+                startTime
+                endTime
+                requestStatus
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation residentMyServiceCreate($input: RequestInput) {
+    request_create(input: $input) {
+        status
+    }
+}
+
+mutation residentMyServiceUpdate($input: RequestInput) {
+    request_update(input: $input) {
+        status
+    }
+}
+
+mutation residentMyServiceDelete($entityId: Int!) {
+    request_delete(entityId: $entityId) {
+        code
+        value
+    }
+}

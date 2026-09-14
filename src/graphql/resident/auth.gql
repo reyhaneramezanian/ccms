@@ -1,0 +1,5 @@
+mutation residentSignup($input: ResidentSignupInput, $residentFlatInput: ResidentFlatInput) {
+    user_signupResident(input: $input, residentFlatInput: $residentFlatInput) {
+        status
+    }
+}

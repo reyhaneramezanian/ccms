@@ -1,0 +1,113 @@
+query adminAnnouncementsBoardGet(
+    $skip: Int
+    $take: Int
+    $where: AnnouncementFilterInput
+    $order: [AnnouncementSortInput!]
+) {
+    announcement_getAnnouncements {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                announcementType {
+                    name
+                }
+                date
+                title
+                message
+                complex {
+                    id
+                    name
+                }
+                block {
+                    id
+                    name
+                }
+                floor {
+                    id
+                    name
+                    blockId
+                }
+                flat {
+                    id
+                    name
+                    floor {
+                        blockId
+                    }
+                }
+                announcementType {
+                    id
+                    name
+                }
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation adminAnnouncementBoardCreate(
+    $complexId: Int!
+    $blockId: Int
+    $floorId: Int
+    $flatId: Int
+    $announcementTypeId: Int!
+    $title: String
+    $message: String
+    $date: DateTime!
+) {
+    announcement_create(
+        input: {
+            complexId: $complexId
+            blockId: $blockId
+            floorId: $floorId
+            flatId: $flatId
+            announcementTypeId: $announcementTypeId
+            title: $title
+            message: $message
+            date: $date
+        }
+    ) {
+        result {
+            id
+        }
+        status
+    }
+}
+
+mutation adminAnnouncementBoardUpdate(
+    $id: Int
+    $complexId: Int!
+    $blockId: Int
+    $floorId: Int
+    $flatId: Int
+    $announcementTypeId: Int!
+    $title: String
+    $message: String
+    $date: DateTime!
+) {
+    announcement_update(
+        input: {
+            id: $id
+            complexId: $complexId
+            blockId: $blockId
+            floorId: $floorId
+            flatId: $flatId
+            announcementTypeId: $announcementTypeId
+            title: $title
+            message: $message
+            date: $date
+        }
+    ) {
+        result {
+            id
+        }
+        status
+    }
+}
+
+mutation adminAnnouncementBoardDelete($entityId: Int!) {
+    announcement_delete(entityId: $entityId) {
+        code
+        value
+    }
+}

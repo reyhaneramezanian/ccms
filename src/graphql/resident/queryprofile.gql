@@ -1,0 +1,107 @@
+query user_getAuthorizedUsers(
+    $skip: Int
+    $take: Int
+    $where: AuthorizedUserFilterInput
+    $order: [AuthorizedUserSortInput!]
+) {
+    user_getAuthorizedUsers {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                firstName
+                lastName
+                relation
+                phoneNumber
+                email
+                activeStatus
+                photoUrl
+                gender
+                residentFlatId
+                dateOfBirth
+                photoUrl
+            }
+
+            totalCount
+        }
+        status
+    }
+}
+
+mutation user_createAuthorizedUser($input: AuthorizedUserCreateInput) {
+    user_createAuthorizedUser(input: $input) {
+        status
+    }
+}
+
+mutation user_updateAuthorizedUser($input: AuthorizedUserUpdateInput) {
+    user_updateAuthorizedUser(input: $input) {
+        status
+    }
+}
+
+mutation user_deleteAuthorizedUser($entityId: Int!) {
+    user_deleteAuthorizedUser(entityId: $entityId) {
+        code
+        value
+    }
+}
+
+query user_getCurrentResident {
+    user_getCurrentResident {
+        result {
+            alternativeContact
+            requests {
+                id
+            }
+            residentFlats {
+                residentId
+                id
+                flatId
+                ownershipStatus
+                activeStatus
+                flat {
+                    floorId
+                    floor {
+                        block {
+                            complexId
+                        }
+                        blockId
+                    }
+                }
+            }
+            authorizedUsers {
+                id
+            }
+            alerts {
+                id
+            }
+            userType
+            firstName
+            middleName
+            lastName
+            photoUrl
+            gender
+            dateOfBirth
+            phoneNumber
+            activeStatus
+            isActive
+            isInactive
+            approvalStatus
+            accountDeleted
+            externalId
+            email
+            id
+            isDeleted
+            createdDate
+            lastModifiedDate
+        }
+        status
+    }
+}
+
+mutation user_deleteAccount {
+    user_deleteAccount {
+        code
+        value
+    }
+}

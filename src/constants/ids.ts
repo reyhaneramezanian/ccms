@@ -1,0 +1,2 @@
+export const APP_MAIN_BODY_ID = "APP_MAIN_BODY_ID"
+export const APP_MODAL_PORTAL_ID = "APP_MODAL_PORTAL_ID"

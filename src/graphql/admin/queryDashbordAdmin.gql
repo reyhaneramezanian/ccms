@@ -1,0 +1,43 @@
+query countDashbord(
+    $where: ComplaintFilterInput
+    $whereannouncement: AnnouncementFilterInput
+    $wherealert: AlertFilterInput
+    $wherepayment: PaymentFilterInput
+) {
+    complaint_getComplaints {
+        result(skip: 0, take: 1, where: $where) {
+            totalCount
+        }
+        status
+    }
+    user_getUsers {
+        result(skip: 0, take: 1) {
+            totalCount
+        }
+        status
+    }
+    announcement_getAnnouncements {
+        result(skip: 0, take: 1, where: $whereannouncement) {
+            totalCount
+        }
+        status
+    }
+    alert_getAlerts {
+        result(skip: 0, take: 1, where: $wherealert) {
+            totalCount
+        }
+        status
+    }
+    payment_getPayments {
+        result(skip: 0, take: 1, where: $wherepayment) {
+            totalCount
+        }
+        status
+    }
+    residentFlat_getResidentFlats {
+        result(skip: 0, take: 1) {
+            totalCount
+        }
+        status
+    }
+}

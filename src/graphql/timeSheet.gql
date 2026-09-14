@@ -1,0 +1,24 @@
+mutation timeSheetUpdate($input: [TimeSheetInput!]) {
+    timeSheet_update(input: $input) {
+        status
+    }
+}
+
+query timeSheetGet(
+    $skip: Int
+    $take: Int
+    $where: TimeSheetFilterInput
+    $order: [TimeSheetSortInput!]
+) {
+    timeSheet_getTimeSheets {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                dayOfWeek
+                from
+                to
+            }
+            totalCount
+        }
+        status
+    }
+}

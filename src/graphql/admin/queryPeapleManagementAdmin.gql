@@ -1,0 +1,203 @@
+query blockManager_getBlockManagers(
+    $skip: Int
+    $take: Int
+    $where: BlockManagerFilterInput
+    $order: [BlockManagerSortInput!]
+) {
+    blockManager_getBlockManagers {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                residentId
+                resident {
+                    firstName
+                    lastName
+                    phoneNumber
+                    email
+                    id
+                }
+                block {
+                    name
+                    id
+                    complex {
+                        name
+                        id
+                    }
+                }
+                id
+                activeStatus
+            }
+
+            totalCount
+        }
+        status
+    }
+}
+
+query departmentManager_getDepartmentManagers(
+    $skip: Int
+    $take: Int
+    $where: DepartmentManagerFilterInput
+    $order: [DepartmentManagerSortInput!]
+) {
+    departmentManager_getDepartmentManagers {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                departmentId
+                activeStatus
+                department {
+                    name
+                    id
+                }
+                staff {
+                    firstName
+                    lastName
+                    phoneNumber
+                    email
+                    userType
+                    id
+                }
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+query user_getComplexManagers(
+    $skip: Int
+    $take: Int
+    $where: ComplexManagerFilterInput
+    $order: [ComplexManagerSortInput!]
+) {
+    user_getComplexManagers {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                middleName
+                firstName
+                lastName
+                phoneNumber
+                email
+                activeStatus
+                id
+                dateOfBirth
+                gender
+                photoUrl
+                complexManagerComplexes {
+                    complex {
+                        name
+                    }
+                    complexId
+                }
+            }
+
+            totalCount
+        }
+        status
+    }
+}
+
+mutation blockManager_create($input: BlockManagerInput) {
+    blockManager_create(input: $input) {
+        status
+    }
+}
+
+mutation blockManager_update($input: BlockManagerInput) {
+    blockManager_update(input: $input) {
+        status
+    }
+}
+
+mutation blockManager_delete($id: Int!) {
+    blockManager_delete(id: $id) {
+        status
+    }
+}
+
+mutation departmentManager_create($input: DepartmentManagerInput) {
+    departmentManager_create(input: $input) {
+        status
+    }
+}
+
+mutation departmentManager_update($input: DepartmentManagerInput) {
+    departmentManager_update(input: $input) {
+        status
+    }
+}
+
+mutation departmentManager_delete($entityId: Int!) {
+    departmentManager_delete(entityId: $entityId) {
+        code
+        value
+    }
+}
+
+mutation user_createComplexManager($input: ComplexManagerCreateInput) {
+    user_createComplexManager(input: $input) {
+        status
+    }
+}
+
+mutation user_updateComplexManager($input: ComplexManagerUpdateInput) {
+    user_updateComplexManager(input: $input) {
+        status
+    }
+}
+
+mutation user_deleteComplexManager($entityId: Int!) {
+    user_deleteComplexManager(entityId: $entityId) {
+        code
+        value
+    }
+}
+
+query residentFlat_getResidentFlats(
+    $skip: Int
+    $take: Int
+    $where: ResidentFlatFilterInput
+    $order: [ResidentFlatSortInput!]
+) {
+    residentFlat_getResidentFlats {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                approvalStatus
+                resident {
+                    firstName
+                    lastName
+                    phoneNumber
+                    photoUrl
+                    createdDate
+                    id
+                    email
+                    alternativeContact
+                    gender
+                }
+                ownershipStatus
+                activeStatus
+                flatId
+                flat {
+                    name
+                    id
+                    floor {
+                        name
+                        id
+                        block {
+                            name
+                            id
+                            complex {
+                                name
+                                id
+                            }
+                        }
+                    }
+                }
+            }
+
+            totalCount
+        }
+        status
+    }
+}

@@ -1,0 +1,37 @@
+query adminMaintenanceTypeGet(
+    $skip: Int
+    $take: Int
+    $where: MaintenanceTypeFilterInput
+    $order: [MaintenanceTypeSortInput!]
+) {
+    maintenanceType_getMaintenanceTypes {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                id
+                name
+                activeStatus
+            }
+            totalCount
+        }
+        status
+    }
+}
+
+mutation adminMaintenanceTypeCreate($input: MaintenanceTypeInput!) {
+    maintenanceType_create(input: $input) {
+        status
+    }
+}
+
+mutation adminMaintenanceTypeUpdate($input: MaintenanceTypeInput!) {
+    maintenanceType_update(input: $input) {
+        status
+    }
+}
+
+mutation adminMaintenanceTypeDelete($enitityId: Int!) {
+    maintenanceType_delete(entityId: $enitityId) {
+        code
+        value
+    }
+}

@@ -1,0 +1,39 @@
+mutation user_createSuperAdmin($input: SuperAdminCreateInput) {
+    user_createSuperAdmin(input: $input) {
+        status
+    }
+}
+
+query user_getSuperAdmins(
+    $skip: Int
+    $take: Int
+    $where: SuperAdminFilterInput
+    $order: [SuperAdminSortInput!]
+) {
+    user_getSuperAdmins {
+        result(skip: $skip, take: $take, where: $where, order: $order) {
+            items {
+                activeStatus
+                dateOfBirth
+                firstName
+                lastName
+                email
+                middleName
+                phoneNumber
+                id
+                gender
+                photoUrl
+            }
+
+            totalCount
+        }
+        status
+    }
+}
+
+mutation user_deleteSuperAdmin($superAdminId: Int!) {
+    user_deleteSuperAdmin(superAdminId: $superAdminId) {
+        code
+        value
+    }
+}
