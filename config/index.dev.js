@@ -2,7 +2,7 @@ const baseUrl = 'url';
 const baseCononicalUrl = 'url';
 const apiUrl = 'url';
 const generatorUrl = 'url';
-const subscriptionUrl ='url';
+const subscriptionUrl = 'url';
 const supportMail = 'url';
 
 const config = {
@@ -17,12 +17,12 @@ const config = {
         'https://apsccmsstorage.blob.core.windows.net/images?sp=racwdli&st=2022-09-05T10:34:59Z&se=2122-09-05T18:34:59Z&spr=https&sv=2021-06-08&sr=c&sig=OMAgEDqgjC%2FjGSC6BB44dbJfb0MJovVRaaO8nx2S0rM%3D',
     containerName: 'images',
     firebase: {
-        apiKey: 'AIzaSyCAfPAA3lbpkSgHmYC0HBPWSjB2DwXdyU0',
-        authDomain: 'aps-ccms-qa.firebaseapp.com',
-        projectId: 'aps-ccms-qa',
-        storageBucket: 'aps-ccms-qa.appspot.com',
-        messagingSenderId: '350973536863',
-        appId: '1:350973536863:android:b7f1259dfc2414aa8cc9ea'
+        apiKey: '',
+        authDomain: '',
+        projectId: '',
+        storageBucket: '',
+        messagingSenderId: '',
+        appId: '1::android:'
     }
 };
 
