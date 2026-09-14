@@ -1,9 +1,9 @@
-const baseUrl = 'https://aps-ccms-qa.azurewebsites.net';
-const baseCononicalUrl = 'https://aps-ccms-qa.azurewebsites.net';
-const apiUrl = 'https://aps-ccms-qa.azurewebsites.net';
-const generatorUrl = 'https://aps-ccms-qa.azurewebsites.net/graphql/';
-const subscriptionUrl = 'wss://aps-ccms-qa.azurewebsites.net/graphql';
-const supportMail = 'support@mychimebeauty.com';
+const baseUrl = 'url';
+const baseCononicalUrl = 'url';
+const apiUrl = 'url';
+const generatorUrl = 'url';
+const subscriptionUrl ='url';
+const supportMail = 'url';
 
 const config = {
     apiUrl,
